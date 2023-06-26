@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/yl-components.esm.js"></script>
+  <script nomodule src="/build/yl-components.js"></script>
+  <style>
+    :root {
+      --yl-theme-font-family: 'Roboto', sans-serif;
+    }
+
+    yl-card-highlight {
+      --yl-card-highlight-max-width: 700px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--yl-theme-font-family);
+      display: grid;
+      /* grid 2x2 */
+      grid-template-columns: 1fr 1fr;
+      /* margin between cells */
+      grid-gap: 20px;
+    }
+
+    /* yl-card-highlight::part(title){
+      color: red;
+    } */
+  </style>
+</head>
+
+<body>
+  <yl-card-highlight data-header-level="1" data-position="top"
+    data-image="%7B%22src%22%3A%22https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FOIP.SMAmS1MxCpssY-raDGzy1wHaE7%3Fpid%3DImgDet%26rs%3D1%22%2C%22alt%22%3A%22imagen%20decorativa%22%7D"
+    data-links="%5B%7B%22href%22%3A%22https%3A%2F%2Fapi.spotify.com%2Fv1%2Fartists%2F0OdUWJ0sBjDrqHygGUXeCF%22%2C%22label%22%3A%22Wilco%22%2C%22title%22%3A%22Wilco%22%7D%2C%7B%22href%22%3A%22https%3A%2F%2Fapi.spotify.com%2Fv1%2Fartists%2F7jy3rLJdDQY21OgRLCZ9sD%22%2C%22label%22%3A%22Tomas%22%2C%22title%22%3A%22Tomas%22%7D%5D">
+    <div slot=title>Header desde Slot</div>
+    <div slot=description>Descripción desde Slot</div>
+  </yl-card-highlight>
+
+  <script>
+    (async () => {
+      await customElements.whenDefined('yl-card-highlight');
+      const cardHighlighEl = document.querySelector('yl-card-highlight');
+      const manifest = await cardHighlighEl.manifest();
+      const html = manifest.initHTML;
+      const newEl = document.createElement('div');
+      console.log(await cardHighlighEl.manifest())
+      newEl.innerHTML = html;
+      document.body.appendChild(newEl);
+      const newCard = newEl.querySelector('yl-card-highlight');
+      console.log(newCard);
+    })();
+  </script>
+</body>
+
+</html>

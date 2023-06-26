@@ -1,0 +1,134 @@
+:host {
+  box-sizing: border-box;
+  display: flex;
+  /**
+    * @prop --yl-card-highlight-max-width: max width host element can reach.
+    */
+  --yl-card-highlight-max-width: 500px;
+  /**
+    * @prop --yl-card-highlight-font-family: font family used in the component.
+    */
+  --yl-card-highlight-font-family: var(--yl-theme-font-family);
+  /**
+    * @prop --yl-card-highlight-big-font-size: font size for the title.
+    */
+  --yl-card-highlight-big-font-size: 24px;
+  /**
+    * @prop --yl-card-highlight-small-font-size: font size for the description.
+    */
+  --yl-card-highlight-small-font-size: 16px;
+
+  border: 1px solid #eaeaea;
+  max-width: var(--yl-card-highlight-max-width);
+  padding: 20px;
+}
+
+:host(.bottom) {
+  flex-direction: column-reverse;
+}
+
+:host(.top) {
+  flex-direction: column;
+}
+
+:host(.left) {
+  flex-direction: row;
+}
+
+:host(.right) {
+  flex-direction: row-reverse;
+}
+
+:host(.right),
+:host(.left) {
+  gap: 20px;
+}
+
+:host(.right)>div,
+:host(.left)>div {
+  width: 50%;
+}
+
+:host(.top)>div,
+:host(.bottom)>div {
+  width: 100%;
+}
+
+.cover {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.cover img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cover div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 10px 15px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 18px;
+  margin-bottom: 0px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.cover:hover div {
+  opacity: 1;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: var(--yl-card-highlight-big-font-size);
+  font-weight: 500;
+  font-family: var(--yl-card-highlight-font-family);
+  margin-bottom: 0px;
+}
+
+.description {
+  font-size: var(--yl-card-highlight-small-font-size);
+  font-family: var(--yl-card-highlight-font-family);
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+ul li a {
+  color: #808080;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: var(--yl-card-highlight-small-font-size);
+  font-family: var(--yl-card-highlight-font-family);
+  text-transform: uppercase;
+}
+
+ul li a:hover {
+  color: #393939;
+}
