@@ -35,25 +35,24 @@ export class YlCardHighlight {
 
   @Element() el: HTMLElement;
 
-  /** El nivel de <h?></h?> que se va a generar */
-  @Prop({attribute: 'data-header-level'}) headerLevel: number = 2;
-  /** La posición de la imagen, pueder ser top | bottom | left | right */
-  @Prop({attribute: 'data-position',}) position: string = 'top';
-  /** La imagen y sus variantes para cada vista. Es un objeto que viene en un encodedUri */
-  @Prop({attribute: 'data-image',}) image: string = encodeURI(JSON.stringify({}));
-  /** Los links que se van a mostrar en la carpeta. Es un arreglo que viene en un encodedUri */
-  @Prop({ attribute: 'data-links',}) links: string = encodeURI(JSON.stringify([]));
-
-
   @State() viewport: string = 'desktop';
   @Listen('resize', { target: 'window' })
   handleResize() {
     this.updateViewport();
   }
 
+  /** El nivel de <h?></h?> que se va a generar */
+  @Prop({ attribute: 'data-header-level' }) headerLevel: number = 2;
+  /** La imagen y sus variantes para cada vista. Es un objeto que viene en un encodedUri */
+  @Prop({ attribute: 'data-image', }) image: string = encodeURI(JSON.stringify({}));
+  /** Los links que se van a mostrar en la carpeta. Es un arreglo que viene en un encodedUri */
+  @Prop({ attribute: 'data-links', }) links: string = encodeURI(JSON.stringify([]));
+  /** La posición de la imagen, pueder ser top | bottom | left | right */
+  @Prop({ attribute: 'data-position', }) position: string = 'top';
+
   componentWillLoad() {
     this.imageData = this.image ? JSON.parse(this.decodeUri(this.image)) : {};
-    let {src, desktop, tablet, mobile} = this.imageData;
+    let { src, desktop, tablet, mobile } = this.imageData;
     if (!src && !desktop && !tablet && !mobile) {
       this.imageData = {
         src: 'https://via.placeholder.com/300x300.png?text=Imagen+no+encontrada',
@@ -99,7 +98,7 @@ export class YlCardHighlight {
    * @returns Retorna el manifest del componente para poder ser usado en el builder
    */
   @Method() async manifest(): Promise<object> {
-   return {
+    return {
       name: 'yl-card-highlight',
       title: 'Tarjeta Destacada',
       preview: 'https://via.placeholder.com/300x300.png?text=Imagen+no+encontrada',
@@ -115,10 +114,10 @@ export class YlCardHighlight {
           <div slot="description">Descripcion</div>
         </yl-card-highlight>
         `
-   }
+    }
   }
 
-  
+
   render() {
     return (
       <Host
@@ -186,7 +185,7 @@ export class YlCardHighlight {
     }
     return imgSrc;
   }
-  
+
   private getHeader(headerLevel: number = 2): string {
     if (headerLevel > 6) headerLevel = 6;
     return `<h${headerLevel} class=title part="title"><slot name='title'>Titulo</slot></h${headerLevel}>`;
