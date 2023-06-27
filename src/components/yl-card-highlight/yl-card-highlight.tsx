@@ -36,10 +36,6 @@ export class YlCardHighlight {
   @Element() el: HTMLElement;
 
   @State() viewport: string = 'desktop';
-  @Listen('resize', { target: 'window' })
-  handleResize() {
-    this.updateViewport();
-  }
 
   /** El nivel de <h?></h?> que se va a generar */
   @Prop({ attribute: 'data-header-level' }) headerLevel: number = 2;
@@ -63,6 +59,11 @@ export class YlCardHighlight {
       }
     }
     this.linksData = this.links ? JSON.parse(this.decodeUri(this.links)) : [];
+    this.updateViewport();
+  }
+
+  @Listen('resize', { target: 'window' })
+  handleResize() {
     this.updateViewport();
   }
 
