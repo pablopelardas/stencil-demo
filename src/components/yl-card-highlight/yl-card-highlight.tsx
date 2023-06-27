@@ -30,10 +30,10 @@ type Links = {
 })
 export class YlCardHighlight {
 
-  @Element() el: HTMLElement;
-
   private imageData: ImageData;
   private linksData: Links[];
+
+  @Element() el: HTMLElement;
 
   /** El nivel de <h?></h?> que se va a generar */
   @Prop({attribute: 'data-header-level'}) headerLevel: number = 2;
